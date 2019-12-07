@@ -1,0 +1,37 @@
+server:
+  port: 80  # 端口
+  max-http-header-size: 1024000
+
+spring:
+  application:
+    name: tranDemo
+    ---  #请注意，分隔符(---)用于分隔application.yml文件中的每个配置文件。
+spring:
+  jpa:
+    show-sql: true
+  jta:
+    transaction-manager-id: tranDemo   
+    enabled: true
+    atomikos:
+      datasource:
+        oa:
+          xa-properties.URL: jdbc:oracle:thin:@10.00.000.000:1521:orcl
+          xa-properties.user: t
+          xa-properties.password: 
+          xa-data-source-class-name: oracle.jdbc.xa.client.OracleXADataSource
+          unique-resource-name: oa
+          max-pool-size: 25
+          min-pool-size: 3
+          max-lifetime: 20000
+          borrow-connection-timeout: 10000
+        emerp: 
+          xa-properties.URL: jdbc:oracle:thin:@192.00.00.000:1521:orcl
+          xa-properties.user: emrp
+          xa-properties.password: 
+          xa-data-source-class-name: oracle.jdbc.xa.client.OracleXADataSource
+          unique-resource-name: emrp
+          max-pool-size: 25
+          min-pool-size: 3
+          max-lifetime: 20000
+          borrow-connection-timeout: 10000
+          
